@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="1DataEntry.aspx.cs" Inherits="_1_DataEntry" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CsongorList.aspx.cs" Inherits="_1_List" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,6 @@
     <title></title>
 </head>
 <body>
-    oierjhgoejhoerjnhgne
     <form id="form1" runat="server">
         <div>
         </div>
