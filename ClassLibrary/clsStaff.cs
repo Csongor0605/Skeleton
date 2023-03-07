@@ -3,7 +3,7 @@ using System;
 namespace ClassLibrary
 {
 
-    class clsStaff
+    public class clsStaff
     {
         private string name;
         private string email;
@@ -29,10 +29,16 @@ namespace ClassLibrary
             this.onSite = false;
         }
 
+        public clsStaff(string loginID, DateTime startDate) 
+        {
+            this.loginID = loginID;
+            this.startDate = startDate;
+        }
+
         public bool checkPassword(string passwordToTest) {
             return passwordToTest == this.password;
         }
-
+        public void SetPassword(string passwordHash) { this.password = passwordHash; }
         public char PermissionLvl { get => permissionLvl; set => permissionLvl = value; }
         public bool OnSite { get => onSite; set => onSite = value; }
         public string Name { get => name; set => name = value; }

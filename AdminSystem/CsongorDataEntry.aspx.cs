@@ -20,6 +20,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void BtnOK_Click(object sender, EventArgs e)
     {
+        clsStaff staff = new clsStaff("294038",Calendar1.SelectedDate);
+        staff.Email = EmailTextBox.Text;
+        staff.Name = NameTextBox.Text;
+        staff.PermissionLvl  = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
+        staff.OnSite = CheckBox1.Checked;
+        staff.SetPassword(TextBox1.Text);
+
+        Session["newStaff"] = staff;
 
         Response.Redirect("CsongorViewer.aspx");
     }
