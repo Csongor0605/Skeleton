@@ -13,7 +13,6 @@ namespace Testing1
         {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', "03/03/2023");
             Assert.IsNotNull(staff);
-            
         }
 
         [TestMethod]
@@ -49,7 +48,7 @@ namespace Testing1
 
         public void TestPermissionLvl() {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', "03/03/2023");
-            Assert.Equals(staff.permissionLvl).get, 'b');
+            Assert.Equals(staff.permissionLvl.get, 'b');
         }
 
     }
