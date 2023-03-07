@@ -1,3 +1,5 @@
+using System;
+
 namespace ClassLibrary
 {
 
@@ -9,14 +11,14 @@ namespace ClassLibrary
         private string password;
         private char permissionLvl;
         private bool onSite;
-        private string startDate;
+        private DateTime startDate;
 
         public clsStaff(string name,
                         string email,
                         string loginID,
                         string password,
                         char permissionLvl,
-                        string startDate)
+                        DateTime startDate)
         {
             this.Name = name;
             this.Email = email;
@@ -36,7 +38,7 @@ namespace ClassLibrary
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }
 
-        public string GetStartDate() { return startDate; }
+        public DateTime GetStartDate() { return startDate; }
     }
 }
 
