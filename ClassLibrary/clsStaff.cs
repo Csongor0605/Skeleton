@@ -24,6 +24,7 @@ namespace ClassLibrary
             this.password = password;
             this.startDate = startDate;
             this.PermissionLvl = permissionLvl;
+            this.onSite = false;
         }
 
         public bool checkPassword(string passwordToTest) {
@@ -34,6 +35,8 @@ namespace ClassLibrary
         public bool OnSite { get => onSite; set => onSite = value; }
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }
+
+        public string GetStartDate() { return startDate; }
     }
 }
 
