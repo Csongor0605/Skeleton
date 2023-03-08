@@ -28,23 +28,27 @@ namespace Testing1
             Assert.Equals(staff.name.get, "Name Nameson");
         }
 
+        [TestMethod]
         public void TestEmail() {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.Equals(staff.email.get, "NNameson@example.co.uk");
         }
 
+        [TestMethod]
         public void TestLoginID() {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Asserts.Equals(staff.loginID.get, "3f8a0b394");
         }
 
+        [TestMethod]
         public void TestPassword() {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.Equals(staff.password.get, "aljvbkejbvkjrbveb");
         }
 
+        [TestMethod]
         public void TestPermissionLvl() {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.Equals(staff.permissionLvl.get, 'b');
