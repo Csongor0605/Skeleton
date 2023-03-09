@@ -7,6 +7,8 @@ namespace Testing3
     [TestClass]
     public class TestBook
     {
+        
+      
         [TestMethod]
         public void TestInstance()
         {
@@ -38,9 +40,9 @@ namespace Testing3
             // crate test data
             String TestData = "Harry Potter and the Philosophers Stone";
             // Assign test data
-            ABook.BookTitle = TestData;
+            ABook.Title = TestData;
             //See if they are the same
-            Assert.AreEqual(ABook.BookTitle, TestData);
+            Assert.AreEqual(ABook.Title, TestData);
         }
 
         [TestMethod]
@@ -103,9 +105,9 @@ namespace Testing3
             // crate test data
             DateTime TestData = DateTime.Now.Date;
             // Assign test data
-            ABook.Restock_date = TestData;
+            ABook.Restock_DOA = TestData;
             //See if they are the same
-            Assert.AreEqual(ABook.Restock_date, TestData);
+            Assert.AreEqual(ABook.Restock_DOA, TestData);
         }
 
         [TestMethod]
@@ -120,5 +122,153 @@ namespace Testing3
             //See if they are the same
             Assert.AreEqual(ABook.RestockOrder_Quantity, TestData);
         }
+
+
+        // TEST FIND METHOD IN clsBOOK class
+        [TestMethod]
+        public void FindMethod()
+        {
+            //create class instance
+            clsBook ABook = new clsBook();
+            // test data
+            int BookID = 10;
+            //use Find method
+            Boolean Found = ABook.Find(BookID);
+            //See if result is true (works)
+            Assert.IsTrue(Found);
+        }
+
+        // TESTING FINDING DATA (HARD CODED IN FIND METHOD)   ------------------------------------------------------------------------------------------------
+        [TestMethod]
+        public void TestBookIDFound()
+        {
+            // create clsBook instance
+            clsBook ABook = new clsBook();
+            // initial to true
+            Boolean OK = true;
+            // create test data to use with method
+            int BookID = 10;
+            // invoke find method
+            Boolean Found = ABook.Find(BookID);
+            // check property
+            if(ABook.BookID != 10)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST TITLE IN FIND METHOD
+        [TestMethod]
+        public void TestTitleFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.Title != "Harry Potter")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST Author IN FIND METHOD
+        [TestMethod]
+        public void TestAuthorFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.Author != "J.K Rowling")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST Genre IN FIND METHOD
+        [TestMethod]
+        public void TestGenreFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.Genre != "Fantasy")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST Quantity IN FIND METHOD
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.Quantity != 10)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST RestockOrdered IN FIND METHOD
+        [TestMethod]
+        public void TestRestockOrderedFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.RestockOrdered != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST Restock_date IN FIND METHOD
+        [TestMethod]
+        public void TestRestock_dateFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.Restock_DOA != Convert.ToDateTime("10/3/2022"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        // TEST Restock_date IN FIND METHOD
+        [TestMethod]
+        public void TestRestockOrder_QuantityFound()
+        {
+            clsBook ABook = new clsBook();
+            Boolean OK = true;
+            int BookID = 10;
+            Boolean Found = ABook.Find(BookID);
+
+            if (ABook.RestockOrder_Quantity != 50)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        // -------------------------------------------------------------------------------------------------------------------------------------------------
     }
 }
