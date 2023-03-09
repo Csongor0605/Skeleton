@@ -19,7 +19,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ABook.BookID = int.Parse(txtbxBookId.Text);
 
         // capture BookTitle from BookTitle textboc in data entry page
-        ABook.BookTitle = txtbxBookTitle.Text;
+        ABook.Title = txtbxTitle.Text;
 
         //capture Book author, from Author Textbox in Data Entry window
         ABook.Author = txtbxAuthor.Text;
@@ -34,7 +34,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ABook.RestockOrdered = chbxRestockOrdered.Checked;
 
         //capture Book Restock date of Arrival (Datetime), from textbox in data entry window
-        ABook.Restock_date = DateTime.Parse(txtbxRestock_date.Text);
+        ABook.Restock_DOA = DateTime.Parse(txtbxRestock_DOA.Text);
 
         //capture Book restock Quantity from textbox in Data Entry window
         ABook.RestockOrder_Quantity = int.Parse(txtbxRestockOrder_Quantity.Text);
@@ -45,5 +45,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("MorganViewer.aspx");
     }
 
-  
+
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create clsBook instacne
+        clsBook ABook = new clsBook();
+        // get primary key entered by user
+        int BookID = Convert.ToInt32(txtbxBookId.Text);
+        //Find record using primary key
+        Boolean Found = ABook.Find(BookID);
+
+        if(Found == true)
+        {
+            //display values of properties in form
+            txtbxTitle.Text = ABook.Title;
+            txtbxAuthor.Text = ABook.Author;
+            txtbxGenre.Text = ABook.Genre;
+            txtbxQuantity.Text = ABook.Quantity.ToString();
+            chbxRestockOrdered.Checked = ABook.RestockOrdered;
+            txtbxRestock_DOA.Text = ABook.Restock_DOA.ToString();
+            txtbxRestockOrder_Quantity.Text = ABook.RestockOrder_Quantity.ToString();
+        }
+    }
 }

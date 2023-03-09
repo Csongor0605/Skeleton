@@ -18,7 +18,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display BookID for the entry
         Response.Write(ABook.BookID + "\n");
         //display Title
-        Response.Write(ABook.BookTitle + "\n");
+        Response.Write(ABook.Title + "\n");
         //display Author for the entry
         Response.Write(ABook.Author +"\n");
         //display Genre
@@ -28,7 +28,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display RestockOrdered (boolean)
         Response.Write(ABook.RestockOrdered + "\n");
         //display Restock_date
-        Response.Write(ABook.Restock_date + "\n");
+        Response.Write(ABook.Restock_DOA + "\n");
         //Display restockorder_quantity
         Response.Write(ABook.RestockOrder_Quantity + "\n");
 
