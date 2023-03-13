@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ABook.Restock_DOA = DateTime.Parse(txtbxRestock_DOA.Text);
 
         //capture Book restock Quantity from textbox in Data Entry window
-        ABook.RestockOrder_Quantity = int.Parse(txtbxRestockOrder_Quantity.Text);
+        ABook.Restock_Quantity = int.Parse(txtbxRestock_Quantity.Text);
 
         // store address is session object
         Session["ABook"] = ABook;
@@ -65,7 +65,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtbxQuantity.Text = ABook.Quantity.ToString();
             chbxRestockOrdered.Checked = ABook.RestockOrdered;
             txtbxRestock_DOA.Text = ABook.Restock_DOA.ToString();
-            txtbxRestockOrder_Quantity.Text = ABook.RestockOrder_Quantity.ToString();
+            txtbxRestock_Quantity.Text = ABook.Restock_Quantity.ToString();
         }
     }
 }

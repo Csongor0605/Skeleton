@@ -131,24 +131,24 @@ namespace ClassLibrary
         }
 
         // RestockOrder_Quantity private member variable
-        private int pRestockOrder_Quantity;
+        private int pRestock_Quantity;
         // RestockOrder_Quantity public property
-        public int RestockOrder_Quantity
+        public int Restock_Quantity
         {
             get
             {
                 // this sends data out of the property
-                return pRestockOrder_Quantity;
+                return pRestock_Quantity;
             }
             set
             {
                 // this allows data into the property
-                pRestockOrder_Quantity = value;
+                pRestock_Quantity = value;
             }
 
         }
 
-       
+
 
 
 
@@ -171,7 +171,7 @@ namespace ClassLibrary
                 pQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
                 pRestockOrdered = Convert.ToBoolean(DB.DataTable.Rows[0]["RestockOrdered"]);
                 pRestock_DOA = Convert.ToDateTime(DB.DataTable.Rows[0]["Restock_DOA"]);
-                pRestockOrder_Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["RestockOrder_Quantity"]);
+                pRestock_Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Restock_Quantity"]);
                 // return everything worked OK
                 return true;
             }
@@ -181,6 +181,101 @@ namespace ClassLibrary
                 // return false indicates a problem
                 return false;
             }
+        }
+
+        public string Valid(string VTitle, string VAuthor, string VGenre, string VQuantity, string VRestock_DOA, string VRestock_Quantity)
+        {
+            string Error = "";
+
+            // validate title parameter
+            if (VTitle.Length == 0)
+            {
+                Error = Error + " Please Enter a Title \n";
+            }
+
+            if (VTitle.Length > 50)
+            {
+                Error = Error + " Title can only be 50 characters long max \n";
+            }
+
+            // validate Author parameter
+            if (VAuthor.Length == 0)
+            {
+                Error = Error + " Please Entor an Author \n";
+            }
+
+            if (VAuthor.Length > 20)
+            {
+                Error = Error + " Author can only be 20 characters long max \n";
+            }
+
+            // validate genre parameter
+            if (VGenre.Length == 0)
+            {
+                Error = Error + " Please enter a Genre";
+            }
+
+            if(VGenre.Length > 10)
+            {
+                Error = Error + " Genre can only be 10 characters long max \n";
+            }
+
+            // validate quantity parameter
+            try
+            {
+                if (int.Parse(VQuantity) == 0 || int.Parse(VQuantity) > 500)
+                {
+                    Error = Error + " Quantity must be between 0 and 500 \n";
+                }
+            }
+            catch
+            {
+                Error = Error + "Please enter a valid number";
+            }
+
+
+            // validate Restock_DOA parameter
+            try
+            {
+                DateTime DateTemp = Convert.ToDateTime(VRestock_DOA);
+                if(DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "Date cannot be in the past \n ";
+                }
+
+                if(DateTemp > DateTime.Today.Date.AddMonths(6))
+                {
+                    Error = Error + "Date cannot be more than 6 months in the future \n";
+                }
+
+            }
+            catch
+            {
+                Error = Error + "Please Enter a valid Date \n";
+            }
+
+
+
+
+            // validate Restock_Quantity parameter
+            try
+            {
+                if (int.Parse(VRestock_Quantity) == 0 || int.Parse(VRestock_Quantity) > 100)
+                {
+                    Error = Error + " Restock Quantity must be between 0 and 100 \n";
+                }
+            }
+            catch
+            {
+                Error = Error + "Please enter a valid number";
+            }
+
+
+
+
+
+
+            return Error;
         }
     }
 }
