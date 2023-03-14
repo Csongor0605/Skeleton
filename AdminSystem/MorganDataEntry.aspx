@@ -35,7 +35,7 @@
         <asp:TextBox ID="txtbxQuantity" runat="server" style="z-index: 1; left: 178px; top: 177px; position: absolute; height: 22px;" width="128px" Height="22px"></asp:TextBox>
         <asp:Label ID="lblRestock_Quantity" runat="server" style="z-index: 1; left: 16px; top: 308px; position: absolute" Text="Restock_Quantity"></asp:Label>
         <asp:TextBox ID="txtbxRestock_Quantity" runat="server" style="z-index: 1; left: 178px; top: 300px; position: absolute" height="22px" width="128px"></asp:TextBox>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 408px; position: absolute; width: 77px"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 364px; position: absolute; width: 569px; height: 63px;"></asp:Label>
         <p>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 14px; top: 453px; position: absolute; height: 26px" Text="OK" />
         </p>
