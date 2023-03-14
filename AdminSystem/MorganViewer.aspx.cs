@@ -26,7 +26,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display Quantity
         Response.Write(ABook.Quantity + "\n");
         //display RestockOrdered (boolean)
-        Response.Write(ABook.RestockOrdered + "\n");
+        Response.Write(ABook.Restock_Ordered + "\n");
         //display Restock_date
         Response.Write(ABook.Restock_DOA + "\n");
         //Display restockorder_quantity

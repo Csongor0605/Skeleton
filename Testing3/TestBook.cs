@@ -101,9 +101,9 @@ namespace Testing3
             // crate test data
             Boolean TestData = true;
             // Assign test data
-            ABook.RestockOrdered = TestData;
+            ABook.Restock_Ordered = TestData;
             //See if they are the same
-            Assert.AreEqual(ABook.RestockOrdered, TestData);
+            Assert.AreEqual(ABook.Restock_Ordered, TestData);
         }
 
         [TestMethod]
@@ -240,7 +240,7 @@ namespace Testing3
             int BookID = 10;
             Boolean Found = ABook.Find(BookID);
 
-            if (ABook.RestockOrdered != true)
+            if (ABook.Restock_Ordered != true)
             {
                 OK = false;
             }
