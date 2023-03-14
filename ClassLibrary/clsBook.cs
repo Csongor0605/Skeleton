@@ -190,34 +190,34 @@ namespace ClassLibrary
             // validate title parameter
             if (VTitle.Length == 0)
             {
-                Error = Error + " Please Enter a Title \n";
+                Error = Error + " Please Enter a Title ;\n";
             }
 
             if (VTitle.Length > 50)
             {
-                Error = Error + " Title can only be 50 characters long max \n";
+                Error = Error + " Title can only be 50 characters long max ;\n";
             }
 
             // validate Author parameter
             if (VAuthor.Length == 0)
             {
-                Error = Error + " Please Entor an Author \n";
+                Error = Error + " Please Entor an Author ;\n";
             }
 
             if (VAuthor.Length > 20)
             {
-                Error = Error + " Author can only be 20 characters long max \n";
+                Error = Error + " Author can only be 20 characters long max ;\n";
             }
 
             // validate genre parameter
             if (VGenre.Length == 0)
             {
-                Error = Error + " Please enter a Genre";
+                Error = Error + " Please enter a Genre ;";
             }
 
             if(VGenre.Length > 10)
             {
-                Error = Error + " Genre can only be 10 characters long max \n";
+                Error = Error + " Genre can only be 10 characters long max ;\n";
             }
 
             // validate quantity parameter
@@ -225,12 +225,12 @@ namespace ClassLibrary
             {
                 if (int.Parse(VQuantity) == 0 || int.Parse(VQuantity) > 500)
                 {
-                    Error = Error + " Quantity must be between 0 and 500 \n";
+                    Error = Error + " Quantity must be between 0 and 500 ;\n";
                 }
             }
             catch
             {
-                Error = Error + "Please enter a valid number";
+                Error = Error + "Please enter a valid number ;";
             }
 
 
@@ -240,18 +240,18 @@ namespace ClassLibrary
                 DateTime DateTemp = Convert.ToDateTime(VRestock_DOA);
                 if(DateTemp < DateTime.Now.Date)
                 {
-                    Error = Error + "Date cannot be in the past \n ";
+                    Error = Error + "Date cannot be in the past ;\n ";
                 }
 
                 if(DateTemp > DateTime.Today.Date.AddMonths(6))
                 {
-                    Error = Error + "Date cannot be more than 6 months in the future \n";
+                    Error = Error + "Date cannot be more than 6 months in the future ;\n";
                 }
 
             }
             catch
             {
-                Error = Error + "Please Enter a valid Date \n";
+                Error = Error + "Please Enter a valid Date ;\n";
             }
 
 
@@ -262,12 +262,12 @@ namespace ClassLibrary
             {
                 if (int.Parse(VRestock_Quantity) == 0 || int.Parse(VRestock_Quantity) > 100)
                 {
-                    Error = Error + " Restock Quantity must be between 0 and 100 \n";
+                    Error = Error + " Restock Quantity must be between 0 and 100 ;\n";
                 }
             }
             catch
             {
-                Error = Error + "Please enter a valid number";
+                Error = Error + "Please enter a valid number ;";
             }
 
 

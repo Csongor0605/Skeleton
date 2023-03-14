@@ -30,7 +30,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //display Restock_date
         Response.Write(ABook.Restock_DOA + "\n");
         //Display restockorder_quantity
-        Response.Write(ABook.RestockOrder_Quantity + "\n");
+        Response.Write(ABook.Restock_Quantity + "\n");
 
 
 
