@@ -59,7 +59,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             ABook.Quantity = int.Parse(txtbxQuantity.Text);
 
-            ABook.RestockOrdered = chbxRestockOrdered.Checked;
+            ABook.Restock_Ordered = chbxRestockOrdered.Checked;
 
             ABook.Restock_DOA = DateTime.Parse(txtbxRestock_DOA.Text);
 
@@ -97,7 +97,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtbxAuthor.Text = ABook.Author;
             txtbxGenre.Text = ABook.Genre;
             txtbxQuantity.Text = ABook.Quantity.ToString();
-            chbxRestockOrdered.Checked = ABook.RestockOrdered;
+            chbxRestockOrdered.Checked = ABook.Restock_Ordered;
             txtbxRestock_DOA.Text = ABook.Restock_DOA.ToString();
             txtbxRestock_Quantity.Text = ABook.Restock_Quantity.ToString();
         }

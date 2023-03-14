@@ -95,19 +95,19 @@ namespace ClassLibrary
         }
 
         // RestockOrdered private member variable
-        private Boolean pRestockOrdered;
+        private Boolean pRestock_Ordered;
         // RestockOrdered public property
-        public Boolean RestockOrdered
+        public Boolean Restock_Ordered
         {
             get
             {
                 // this sends data out of the property
-                return pRestockOrdered;
+                return pRestock_Ordered;
             }
             set
             {
                 // this allows data into the property
-                pRestockOrdered = value;
+                pRestock_Ordered = value;
             }
 
         }
@@ -159,7 +159,7 @@ namespace ClassLibrary
             // add parameter for BookID to search for
             DB.AddParameter("@BookID", BookID);
             //execute stored procedure
-            DB.Execute("dbo.Select_all_from_Book");
+            DB.Execute("Book_FilterByBookID");
             // if one record is found (should be 1 or 0)
             if (DB.Count == 1)
             {
@@ -169,7 +169,7 @@ namespace ClassLibrary
                 pAuthor = Convert.ToString(DB.DataTable.Rows[0]["Author"]);
                 pGenre = Convert.ToString(DB.DataTable.Rows[0]["Genre"]);
                 pQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
-                pRestockOrdered = Convert.ToBoolean(DB.DataTable.Rows[0]["RestockOrdered"]);
+                pRestock_Ordered = Convert.ToBoolean(DB.DataTable.Rows[0]["Restock_Ordered"]);
                 pRestock_DOA = Convert.ToDateTime(DB.DataTable.Rows[0]["Restock_DOA"]);
                 pRestock_Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Restock_Quantity"]);
                 // return everything worked OK
