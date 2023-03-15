@@ -18,41 +18,52 @@ namespace Testing1
         public void TestDateStarted()
         {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Assert.Equals(staff.GetStartDate, new DateTime(2023, 03, 01));
+            Assert.AreEqual(staff.GetStartDate(), new DateTime(2023, 03, 01));
         }
 
         [TestMethod]
         public void TestName() {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Assert.Equals(staff.name.get, "Name Nameson");
+            Assert.AreEqual(staff.Name, "Name Nameson");
         }
 
         [TestMethod]
         public void TestEmail() {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Assert.Equals(staff.email.get, "NNameson@example.co.uk");
+            Assert.AreEqual(staff.Email, "NNameson@example.co.uk");
         }
 
         [TestMethod]
         public void TestLoginID() {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Asserts.Equals(staff.loginID.get, "3f8a0b394");
+            Assert.AreEqual(staff.LoginID, "3f8a0b394");
         }
 
         [TestMethod]
         public void TestPassword() {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Assert.Equals(staff.password.get, "aljvbkejbvkjrbveb");
+            Assert.AreEqual(staff.Password, "aljvbkejbvkjrbveb");
         }
 
         [TestMethod]
         public void TestPermissionLvl() {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "3f8a0b394", "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
-            Assert.Equals(staff.permissionLvl.get, 'b');
+            Assert.AreEqual(staff.PermissionLvl, 'b');
         }
 
+        [TestMethod]
+        public void TestFindMethod() {
+            clsStaff staff = new clsStaff("hello", new DateTime(2023,03,14));
+            bool found = false;
+            bool ok = true;
+            string testKey = "hello";
+            found = staff.Find(testKey);
+            if (staff.LoginID != testKey)
+                ok = false;
+            Assert.IsTrue(ok);
+        }
     }
 }
