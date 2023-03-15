@@ -33,6 +33,7 @@ namespace ClassLibrary
         {
             this.loginID = loginID;
             this.startDate = startDate;
+            this.password = "password";
         }
 
         public bool checkPassword(string passwordToTest) {
@@ -48,6 +49,10 @@ namespace ClassLibrary
         public string Password { get => password; }
 
         public DateTime GetStartDate() { return startDate; }
+
+        public bool Find(string loginID) {
+            return true;
+        }
     }
 }
 

@@ -54,5 +54,16 @@ namespace Testing1
             Assert.AreEqual(staff.PermissionLvl, 'b');
         }
 
+        [TestMethod]
+        public void TestFindMethod() {
+            clsStaff staff = new clsStaff("hello", new DateTime(2023,03,14));
+            bool found = false;
+            bool ok = true;
+            string testKey = "hello";
+            found = staff.Find(testKey);
+            if (staff.LoginID != testKey)
+                ok = false;
+            Assert.IsTrue(ok);
+        }
     }
 }
