@@ -44,6 +44,9 @@ namespace ClassLibrary
         public string Name { get => name; set => name = value; }
         public string Email { get => email; set => email = value; }
 
+        public string LoginID { get => loginID; }
+        public string Password { get => password; }
+
         public DateTime GetStartDate() { return startDate; }
     }
 }
