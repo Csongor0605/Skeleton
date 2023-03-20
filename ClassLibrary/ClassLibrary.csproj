@@ -44,6 +44,7 @@
     <Compile Include="clsBook.cs" />
     <Compile Include="clsBookCollection.cs" />
     <Compile Include="clsComplaint.cs" />
+    <Compile Include="clsCustomer.cs" />
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
