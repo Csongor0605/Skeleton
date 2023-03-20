@@ -12,6 +12,10 @@
             <asp:Label ID="Name" runat="server" Text="Name" width="138px"></asp:Label><asp:TextBox ID="NameTextBox" runat="server" style="z-index: 1; left: 171px; top: 14px; position: absolute"></asp:TextBox>
             <br />
             <br />
+            <asp:Label ID="Login" runat="server" Text="Login ID" width="79px"></asp:Label><asp:TextBox ID="LoginIDBox" runat="server" style="z-index: 1; left: 171px; top: 14px; position: absolute"></asp:TextBox>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Find" />
+            <br />
             <asp:Label ID="Email" runat="server" Text="Email" width="138px"></asp:Label><asp:TextBox ID="EmailTextBox" runat="server" style="z-index: 1; left: 170px; top: 57px; position: absolute"></asp:TextBox>
             <br />
             <br />
@@ -19,7 +23,7 @@
             <br />
             <br />
             <asp:Label ID="PermissionLvl" runat="server" Text="Permission Level"></asp:Label><br />
-            <asp:RadioButtonList ID="RadioButtonList1" runat="server" style="z-index: 1; left: 173px; top: 137px; position: absolute; height: 28px; width: 96px">
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" style="z-index: 1; left: 170px; top: 198px; position: absolute; height: 28px; width: 96px">
                 <asp:ListItem>Low</asp:ListItem>
                 <asp:ListItem>Medium</asp:ListItem>
                 <asp:ListItem>High</asp:ListItem>
@@ -28,7 +32,7 @@
             <br />
             <br />
             <br />
-            <asp:Calendar ID="Calendar1" runat="server" style="z-index: 1; left: 166px; top: 227px; position: absolute; height: 161px; width: 309px"></asp:Calendar>
+            <asp:Calendar ID="Calendar1" runat="server" style="z-index: 1; left: 169px; top: 286px; position: absolute; height: 161px; width: 309px"></asp:Calendar>
             <asp:Label ID="StartDate" runat="server" Text="Start Date" width="138px"></asp:Label>
             <br />
             <br />
@@ -40,9 +44,9 @@
             <br />
             <br />
             <br />
-            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" style="z-index: 1; left: 166px; top: 436px; position: absolute" />
+            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" style="z-index: 1; left: 165px; top: 509px; position: absolute" />
             <br />
-            <asp:Button ID="BtnOK" runat="server" OnClick="BtnOK_Click" style="z-index: 1; left: 26px; top: 554px; position: absolute; width: 361px; height: 70px" Text="OK" />
+            <asp:Button ID="BtnOK" runat="server" OnClick="BtnOK_Click" style="z-index: 1; left: 21px; top: 593px; position: absolute; width: 361px; height: 70px" Text="OK" />
             <asp:Label ID="OnSite" runat="server" Text="On Site?" width="138px" Height="18px" style="margin-top: 18px"></asp:Label>
         </div>
     </form>
