@@ -72,6 +72,11 @@ namespace ClassLibrary
             else
                 return false;
         }
+
+        public string Valid(string loginID, string name, string password, string email, string startDate)
+        {
+            
+        }
     }
 }
 

@@ -7,6 +7,15 @@ namespace Testing1
     [TestClass]
     public class TestStaff
     {
+        //"Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01)
+
+        string name = "Name Nameson";
+        string email = "NNameson@example.co.uk";
+        string loginID = "123456";
+        string password = "aljvbkejbvkjrbveb";
+        string startDate = new DateTime(2023, 03, 01).ToShortDateString();
+
+
         [TestMethod]
         public void TestConstructor()
         {
@@ -195,6 +204,15 @@ namespace Testing1
                 ok = false;
             }
             Assert.IsTrue(ok);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK() 
+        {
+            clsStaff staff = new clsStaff();
+            string Error = "";
+            Error = staff.Valid(loginID, name, password, email, startDate);
+            Assert.AreEqual(Error, "");
         }
     }
 }
