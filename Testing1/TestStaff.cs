@@ -31,41 +31,47 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void TestName() {
+        public void TestName()
+        {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.AreEqual(staff.Name, "Name Nameson");
         }
 
         [TestMethod]
-        public void TestEmail() {
+        public void TestEmail()
+        {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.AreEqual(staff.Email, "NNameson@example.co.uk");
         }
 
         [TestMethod]
-        public void TestLoginID() {
+        public void TestLoginID()
+        {
 
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.AreEqual(staff.LoginID, 123456);
         }
 
         [TestMethod]
-        public void TestPassword() {
+        public void TestPassword()
+        {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.AreEqual(staff.Password, "aljvbkejbvkjrbveb");
         }
 
         [TestMethod]
-        public void TestPermissionLvl() {
+        public void TestPermissionLvl()
+        {
             clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
             Assert.AreEqual(staff.PermissionLvl, 'b');
         }
 
         [TestMethod]
-        public void TestFindMethod() {
-            clsStaff staff = new clsStaff(123456, new DateTime(2023,03,14));
+        public void TestFindMethod()
+        {
+            clsStaff staff = new clsStaff(123456, new DateTime(2023, 03, 14));
             bool found = false;
             bool ok = true;
             int testKey = 123456;
@@ -76,7 +82,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void TestNameFound() 
+        public void TestNameFound()
         {
             clsStaff staff = new clsStaff();
 
@@ -87,7 +93,8 @@ namespace Testing1
 
             found = staff.Find(tstLogin);
 
-            if (staff.Name == "Example Exampleson") {
+            if (staff.Name == "Example Exampleson")
+            {
                 ok = false;
             }
             Assert.IsTrue(ok);
@@ -207,7 +214,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void ValidMethodOK() 
+        public void ValidMethodOK()
         {
             clsStaff staff = new clsStaff();
             string Error = "";

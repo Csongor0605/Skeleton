@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsStaff staff = new clsStaff();
         staff.Email = EmailTextBox.Text;
         staff.Name = NameTextBox.Text;
-        staff.PermissionLvl  = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
+        staff.PermissionLvl = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
         staff.OnSite = CheckBox1.Checked;
         staff.Password = TextBox1.Text;
         staff.LoginID = 1234567;
