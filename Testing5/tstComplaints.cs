@@ -24,7 +24,7 @@ namespace Testing5
             Assert.AreEqual(Complaint.Active, TestData);
         }
         [TestMethod]
-        public void DatePropertyOK()
+        public void DateAddedPropertyOK()
         {
             clsComplaint Complaint = new clsComplaint();
             DateTime TestData = DateTime.Now.Date;
@@ -64,12 +64,80 @@ namespace Testing5
             Assert.AreEqual(Complaint.Email, TestData);
         }
         [TestMethod]
-        public void TextPropertyOK ()
+        public void TextPropertyOK()
         {
             clsComplaint Complaint = new clsComplaint();
             string TestData = "21b";
             Complaint.Text = TestData;
             Assert.AreEqual(Complaint.Text, TestData);
+        }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsComplaint Complaint = new clsComplaint();
+            //boolean variable to stroe the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 OrderID = 21;
+            //invoke the method
+            Found = Complaint.Find(OrderID);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void OrderIDNoFound()
+        {
+            clsComplaint Complaint = new clsComplaint();
+            //Boolean
+            Boolean Found = false;
+            //boolean variable to record if data is ok (assume it is) 
+            Boolean OK = true;
+            //create some test data to use within the method
+            Int32 OrderID = 21;
+            //invoke the method
+            Found = Complaint.Find(OrderID);
+            //check the Order id
+            if (Complaint.OrderID != 21)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateAddedFound()
+        {
+            clsComplaint Complaint = new clsComplaint();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to test if data is ok (assume it is)
+            Boolean OK = true;
+            //create some test data 
+            Int32 OrderID = 21;
+            //invoke the method
+            Found = Complaint.Find(OrderID);
+            //check the property
+            if (Complaint.DateAdded != Convert.ToDateTime("16/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void ActiveFound()
+        {
+            clsComplaint Complaint = new clsComplaint();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderID = 21;
+            Found = Complaint.Find(OrderID);
+            if (Complaint.Active != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
 }
