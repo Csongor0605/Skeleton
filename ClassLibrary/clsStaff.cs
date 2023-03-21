@@ -75,7 +75,7 @@ namespace ClassLibrary
 
         public string Valid(string loginID, string name, string password, string email, string startDate)
         {
-            
+            return "";
         }
     }
 }
