@@ -13,7 +13,8 @@
         <asp:Label ID="lblCustomerID" runat="server" style="z-index: 1; left: 11px; top: 43px; position: absolute" Text="Customer ID" width="140px"></asp:Label>
             <asp:TextBox ID="txtCustomerID" runat="server" style="z-index: 1; left: 131px; top: 46px; position: absolute; height: 22px; width: 128px;"></asp:TextBox>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 338px; top: 52px; position: absolute" Text="Find" />
+        </p>
         <p>
             &nbsp;</p>
         <p>
