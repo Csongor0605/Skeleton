@@ -81,7 +81,7 @@ namespace ClassLibrary
             if (!int.TryParse(loginID, out temp) || temp < 0 || temp > 999999)
                 Error += "loginID must be six digit positive integer";
 
-            if (password.Length >= 50 || Regex.IsMatch(password, "([a-z][A-Z][0-9])*") || password.Length <= 3 || password == null)
+            if (password.Length >= 50 || !Regex.IsMatch(password, "([a-z][A-Z][0-9])*") || password.Length <= 3 || password == null)
                 Error += "Password must be less than 50 characters, but more than 3 and contain only alphanumerical characters";
 
             if (!Regex.IsMatch(email, "([a-z][A-Z][0-9])*@([a-z][A-Z][0-9])*.([a-z][A-Z][0-9])*") && !(email == null || email == ""))
