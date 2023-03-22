@@ -188,7 +188,7 @@ namespace Testing2
             //invoke the method 
             Found = ACustomer.Find(CustomerID);
             //check the property
-            if (ACustomer.CustomerReg != Convert.ToDateTime("16/09/2023"))
+            if (ACustomer.CustomerReg != Convert.ToDateTime("01/01/2020"))
             {
                 OK = false;
             }
@@ -286,7 +286,7 @@ namespace Testing2
 
 
 
-            if (ACustomer.CustomerName != "kevin hart")
+            if (ACustomer.CustomerName != "John Lee")
 
             {
 
@@ -420,7 +420,7 @@ namespace Testing2
 
 
 
-            if (ACustomer.CustomerEmail != "kevinhart@gmail.com")
+            if (ACustomer.CustomerEmail != "JohnLee@gmail.com")
 
             {
 
@@ -487,7 +487,7 @@ namespace Testing2
 
 
 
-            if (ACustomer.CustomerPassword != "password123")
+            if (ACustomer.CustomerPassword != "JohnLee123")
 
             {
 
