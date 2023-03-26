@@ -15,8 +15,8 @@ namespace ClassLibrary
 
         //dateadded private member variable
         private DateTime mDateAdded;
-            //DateAdded public property
-        public DateTime DateAdded 
+        //DateAdded public property
+        public DateTime DateAdded
         {
 
             get
@@ -38,13 +38,13 @@ namespace ClassLibrary
         }
 
 
-        public Int32 CustomerID 
+        public Int32 CustomerID
         {
             get
             {
                 //this line of code sends data out of the property
                 return mCustomerID;
-            }    
+            }
             set
             {
                 //this line of code allows data into the property
@@ -55,8 +55,8 @@ namespace ClassLibrary
         //private data member for the customer address property
         private string mCustomerAddress;
         //public property for the address number
-        public string CustomerAddress 
-         {
+        public string CustomerAddress
+        {
 
             get
 
@@ -86,53 +86,53 @@ namespace ClassLibrary
         private string mCustomerEmail;
 
         //CustomerEmail public property
-        public string CustomerEmail 
-         {
+        public string CustomerEmail
+        {
 
-                get
+            get
 
-                {
+            {
 
-                    //this line of code sends data out of the property
+                //this line of code sends data out of the property
 
-                    return mCustomerEmail;
+                return mCustomerEmail;
 
-                }
+            }
 
-                set
+            set
 
-                {
+            {
 
-                    //this line of code allows data into the property
+                //this line of code allows data into the property
 
-                    mCustomerEmail = value;
+                mCustomerEmail = value;
 
-                }
+            }
 
         }
 
         //dateAdded private member variable
         private DateTime mCustomerReg;
         //dateadded public property
-        public DateTime CustomerReg 
+        public DateTime CustomerReg
         {
             get
             {
                 return mCustomerReg;
-            }    
+            }
             set
             {
                 mCustomerReg = value;
             }
-                
+
         }
         //private data member for the CustomerName property
 
         private string mCustomerName;
 
         //public property for the customer name
-        public string CustomerName 
-         {
+        public string CustomerName
+        {
 
             get
 
@@ -144,7 +144,7 @@ namespace ClassLibrary
 
             }
 
-    set
+            set
 
             {
 
@@ -160,7 +160,7 @@ namespace ClassLibrary
         private Boolean mCustomerOrderMade;
 
         //public property for OrderMade
-        public bool CustomerOrderMade 
+        public bool CustomerOrderMade
         {
 
             get
@@ -173,7 +173,7 @@ namespace ClassLibrary
 
             }
 
-    set
+            set
 
             {
 
@@ -189,7 +189,7 @@ namespace ClassLibrary
         private string mCustomerPassword;
 
         //public property for the CustomerPassword
-        public string CustomerPassword 
+        public string CustomerPassword
         {
 
             get
@@ -246,5 +246,88 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string CustomerName, string CustomerEmail, string CustomerPassword, string CustomerAddress, string CustomerReg)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store the error
+            DateTime DateTemp;
+            //if the CustomerName is blank
+            if (CustomerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The customer name may not be blank : ";
+            }
+            //if the customer name is greater than 6 characters
+            if (CustomerName.Length > 50)
+            {
+                Error = Error + "The CustomerName must be less than 50 characters : ";
+            }
+            try
+            {
+                //copy the CustomerReg value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(CustomerReg);
+
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error 
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //return any error messages
+                return Error + "The date was not a valid date : ";
+            }
+            //is the post code blank
+            if (CustomerAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "The post code may not be blank : ";
+            }
+            //if the post code is too long
+            if (CustomerAddress.Length > 50)
+            {
+                //record the error
+                Error = Error + "The post code must be less than 50 characters : ";
+            }
+
+            //is the Email blank
+            if (CustomerEmail.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Email may not be blank : ";
+            }
+            //if the street is too long
+            if (CustomerEmail.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Password must be less than 50 characters : ";
+            }
+            //is the town blank
+            if (CustomerPassword.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Password may not be blank : ";
+            }
+            //if the town is too long
+            if (CustomerPassword.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Password must be less than 50 characters : ";
+            }
+            //return any error messages
+            return Error;
+
+        }
+
+
     }
 }
