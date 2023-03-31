@@ -85,16 +85,16 @@ namespace ClassLibrary
                 mEmail = value;
             }
         }
-        private string mText;
-        public string Text
+        private string mComplaint;
+        public string Complaint
         {
             get
             {
-                return mText;
+                return mComplaint;
             }
             set
             {
-                mText = value;
+                mComplaint = value;
             }
         }
 
@@ -102,16 +102,30 @@ namespace ClassLibrary
 
         public bool Find(int OrderID)
         {
-            //set the private data members to the data test value
-            mOrderID = 21;
-            mDateAdded = Convert.ToDateTime("16/9/2015");
-            mActive = true;
-            mText = "Test Text";
-            mSubject = "Test Subject";
-            mEmail = "Test Email";
-            mName = "Test Name";
-            //always return true
-            return true;
+            //create a instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the order id to search for
+            DB.AddParameter("@OrderID", OrderID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblComplaint_FilterByOrderID");
+            //if one record is found (there should be one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data member
+                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mSubject = Convert.ToString(DB.DataTable.Rows[0]["Subject"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mComplaint = Convert.ToString(DB.DataTable.Rows[0]["Complaint"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["ActiveOrder"]);
+                //return that everything is ok
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

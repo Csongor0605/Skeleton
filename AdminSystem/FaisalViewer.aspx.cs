@@ -34,7 +34,7 @@ public partial class _1Viewer : System.Web.UI.Page
 
 
         //display the complaint for this entry
-        Response.Write(Complaint.Text);
+        Response.Write(Complaint.Complaint);
 
 
         //display the date for this entry

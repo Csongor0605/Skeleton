@@ -12,6 +12,9 @@
         .auto-style2 {
             text-align: left;
         }
+        .auto-style3 {
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -19,16 +22,18 @@
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td>
+                    <td class="auto-style3">
                         <asp:Label ID="tblOrderID" runat="server" style="z-index: 1; left: 20px; top: 24px; position: absolute" Text="Order ID" height="36px" width="132px"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
                         <asp:TextBox ID="TxtOrderID" runat="server" style="z-index: 1; left: 167px; top: 20px; position: absolute" height="38px" width="248px"></asp:TextBox>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="margin-left: 486px" Text="Find" />
+                    </td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -64,7 +69,7 @@
             &nbsp;</p>
         <p>
             &nbsp;</p>
-        <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 167px; top: 74px; position: absolute" height="38px" width="248px"></asp:TextBox>
+        <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 167px; top: 86px; position: absolute" height="38px" width="248px"></asp:TextBox>
         <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 20px; top: 374px; position: absolute; height: 34px" Text="Active Order" />
         <asp:TextBox ID="txtSubject" runat="server" style="z-index: 1; left: 167px; top: 150px; position: absolute" height="38px" width="248px"></asp:TextBox>
         <asp:Label ID="tblEmail" runat="server" style="z-index: 1; left: 20px; top: 214px; position: absolute" Text="Email" height="36px" width="132px"></asp:Label>
