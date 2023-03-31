@@ -34,7 +34,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Complaint.Email = txtEmail.Text;
         
         //capture the complaint
-        Complaint.Text = txtComplaint.Text;
+        Complaint.Complaint = txtComplaint.Text;
 
         //capture the date
         Complaint.DateAdded = Convert.ToDateTime(txtDate.Text);
@@ -50,5 +50,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
  
         
      
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsComplaint Complaint = new clsComplaint();
+        //variable to store in the primary key
+        Int32 OrderID;
+        //variable to store the results of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        OrderID = Convert.ToInt32(TxtOrderID.Text);
+        //find the record
+        Found = Complaint.Find(OrderID);
+        //if found
+        if (Found == true)
+        {
+            //display the properties in this form
+            TxtOrderID.Text = Complaint.OrderID.ToString();
+            txtName.Text = Complaint.Name;
+            txtSubject.Text = Complaint.Subject;
+            txtEmail.Text = Complaint.Email;
+            txtComplaint.Text = Complaint.Complaint;
+            txtDate.Text = Complaint.DateAdded.ToString();
+            chkActive.Checked = Complaint.Active;
+
+        }
     }
 }

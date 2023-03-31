@@ -2,6 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+
+internal class ShimsContext
+{
+}
+
 namespace Testing5
 {
     [TestClass]
@@ -68,8 +73,8 @@ namespace Testing5
         {
             clsComplaint Complaint = new clsComplaint();
             string TestData = "21b";
-            Complaint.Text = TestData;
-            Assert.AreEqual(Complaint.Text, TestData);
+            Complaint.Complaint = TestData;
+            Assert.AreEqual(Complaint.Complaint, TestData);
         }
         [TestMethod]
         public void FindMethodOK()
