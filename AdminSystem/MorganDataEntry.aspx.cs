@@ -65,10 +65,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             ABook.Restock_Quantity = int.Parse(txtbxRestock_Quantity.Text);
 
-            // store address is session object
-            Session["ABook"] = ABook;
-            //Navigate to viewer page
-            Response.Redirect("MorganViewer.aspx");
+            // book collection instance
+            clsBookCollection BookList = new clsBookCollection();
+            // set thisbook property
+            BookList.ThisBook = ABook;
+            // add record
+            BookList.Add();
+            //redirect back tp listpage
+            Response.Redirect("MorganList.aspx");
         }
         else
         {

@@ -5,7 +5,10 @@ namespace ClassLibrary
 {
     public class clsBookCollection
     {
+        // private data member for list
         List<clsBook> pBookList = new List<clsBook>();
+        // private data member thisBook
+        clsBook mThisBook = new clsBook();
         public List<clsBook> BookList
         {
             get
@@ -31,7 +34,18 @@ namespace ClassLibrary
             }
         }
 
-        public clsBook ThisBook { get; set; }
+        public clsBook ThisBook
+        {
+            get
+            {
+                return mThisBook;
+            }
+            set
+            {
+                mThisBook = value;
+            }
+        }
+
 
 
         public clsBookCollection() //constructor gets entire table records and stores in BookList
@@ -72,5 +86,21 @@ namespace ClassLibrary
 
         }
 
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            // set parameters for stored procedures
+            DB.AddParameter("@Title", mThisBook.Title);
+            DB.AddParameter("@Author", mThisBook.Author);
+            DB.AddParameter("@Genre", mThisBook.Genre);
+            DB.AddParameter("@Quantity", mThisBook.Quantity);
+            DB.AddParameter("@Restock_Ordered", mThisBook.Restock_Ordered);
+            DB.AddParameter("@Restock_DOA", mThisBook.Restock_DOA);
+            DB.AddParameter("@Restock_Quantity", mThisBook.Restock_Quantity);
+
+            // for all columns in DB
+            return DB.Execute("Book_AddRecord");
+
+        }
     }
 }
