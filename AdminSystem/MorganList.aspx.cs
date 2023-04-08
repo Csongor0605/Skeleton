@@ -32,6 +32,16 @@ public partial class _1_List : System.Web.UI.Page
     //bind data to list
     LstBoxBookList.DataBind();
             }
+
+
+    protected void BttnAdd_Click(object sender, EventArgs e)
+    {
+        // stores -1 to session object to inidcate thsi is a new record
+        Session["BookID"] = -1;
+
+        // redirect to data entry page
+        Response.Redirect("MorganDataEntry.aspx");
+    }
         }
 
  

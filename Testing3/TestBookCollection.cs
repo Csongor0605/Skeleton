@@ -118,6 +118,35 @@ namespace Testing3
 
         }
 
-        // temp test to 
+        // test add method
+        [TestMethod]
+        public void TestAddMethod()
+        {
+            // allbook instance
+            clsBookCollection AllBooks = new clsBookCollection();
+            // create item of test data
+            clsBook TestItem = new clsBook();
+            // store primary key
+            Int32 PrimaryKey = 0;
+
+            // set its properties
+            TestItem.BookID = 5;
+            TestItem.Title = "Percy Jackson";
+            TestItem.Author = "Rick Riordan";
+            TestItem.Genre = "Fantasy";
+            TestItem.Quantity = 10;
+            TestItem.Restock_Ordered = true;
+            TestItem.Restock_DOA = DateTime.Now.Date;
+            TestItem.Restock_Quantity = 50;
+
+            // set thisbook to test data
+            AllBooks.ThisBook = TestItem;
+            // add record
+            PrimaryKey = AllBooks.Add();
+            // find record
+            AllBooks.ThisBook.Find(PrimaryKey);
+            // test if two values are equal
+            Assert.AreEqual(AllBooks.ThisBook, TestItem);
+        }
     }
 }
