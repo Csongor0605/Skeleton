@@ -148,5 +148,124 @@ namespace Testing3
             // test if two values are equal
             Assert.AreEqual(AllBooks.ThisBook, TestItem);
         }
+
+
+        // test update method
+        [TestMethod]
+        public void TestUpdateMethod()
+        {
+            // allbook instance
+            clsBookCollection AllBooks = new clsBookCollection();
+            // create item of test data
+            clsBook TestItem = new clsBook();
+            // store primary key
+            Int32 PrimaryKey = 0;
+
+            // set its properties
+            //TestItem.BookID = 5;
+            TestItem.Title = "Percy Jackson";
+            TestItem.Author = "Rick Riordan";
+            TestItem.Genre = "Fantasy";
+            TestItem.Quantity = 10;
+            TestItem.Restock_Ordered = true;
+            TestItem.Restock_DOA = DateTime.Now.Date;
+            TestItem.Restock_Quantity = 50;
+
+            // set thisbook to test data
+            AllBooks.ThisBook = TestItem;
+            // add record
+            PrimaryKey = AllBooks.Add();
+            // set priamry key of test data
+            TestItem.BookID = PrimaryKey;
+
+            // modify test data
+            TestItem.Title = "Brief History of Time";
+            TestItem.Author = "Stephen Hawking";
+            TestItem.Genre = "Science";
+            TestItem.Quantity = 6;
+            TestItem.Restock_Ordered = true;
+            TestItem.Restock_DOA = DateTime.Now.Date;
+            TestItem.Restock_Quantity = 34;
+
+            // set record based on new test data
+            AllBooks.ThisBook = TestItem;
+            // update record
+            AllBooks.Update();
+            // find recrod
+            AllBooks.ThisBook.Find(PrimaryKey);
+
+            //test if thisBook matches test data
+            Assert.AreEqual(AllBooks.ThisBook, TestItem);
+        }
+
+
+        [TestMethod]
+        public void TestDeleteMetod()
+        {
+            clsBookCollection AllBooks = new clsBookCollection();
+            clsBook TestItem = new clsBook();  // instacne of clsbookcollection and clsbook
+
+            // store primary key
+            Int32 PrimaryKey = 0;
+
+            //set properties of TestItem
+            TestItem.BookID = 89;
+            TestItem.Title = "Brief History of Time";
+            TestItem.Author = "Stephen Hawking";
+            TestItem.Genre = "Science";
+            TestItem.Quantity = 6;
+            TestItem.Restock_Ordered = true;
+            TestItem.Restock_DOA = DateTime.Now.Date;
+            TestItem.Restock_Quantity = 34;
+
+            AllBooks.ThisBook = TestItem;
+
+            // add record
+            PrimaryKey = AllBooks.Add();
+            // set primary key of test data
+            TestItem.BookID = PrimaryKey;
+            // find record
+            AllBooks.ThisBook.Find(PrimaryKey);
+            // Delete record
+            AllBooks.Delete();
+
+            // find record, check if it was not found
+            Boolean Found = AllBooks.ThisBook.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+
+        // these test FilterAuthor Method
+        [TestMethod]
+        public void TestAuthorFilterMethod()
+        {
+            clsBookCollection AllBooks = new clsBookCollection();
+            clsBookCollection FilteredBooks = new clsBookCollection();
+
+            FilteredBooks.FilterByAuthor("");
+            // empty filter string should return all records
+            Assert.AreEqual(AllBooks.Count, FilteredBooks.Count);
+        }
+
+        [TestMethod]
+        public void TestAuthorFilterNoneFound()
+        {
+            clsBookCollection FilteredBooks = new clsBookCollection();
+
+            FilteredBooks.FilterByAuthor("x");
+
+            Assert.AreEqual(0, FilteredBooks.Count);
+        }
+
+        [TestMethod]
+        public void TestAuthorFilterTwoFound()
+        {
+            clsBookCollection FilteredBooks = new clsBookCollection();
+
+            FilteredBooks.FilterByAuthor("J.K Rowling");
+
+            Assert.AreEqual(2, FilteredBooks.Count);
+        }
+
     }
 }
