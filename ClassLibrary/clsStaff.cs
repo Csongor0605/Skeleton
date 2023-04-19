@@ -78,19 +78,19 @@ namespace ClassLibrary
         {
             string Error = "";
             int temp;
-            if (!int.TryParse(loginID, out temp) || temp < 99999 || temp > 999999)
+            if (!int.TryParse(loginID, out temp) || temp <= 99999 || temp > 999999)
                 Error += "loginID must be six digit positive integer";
 
-            if (password.Length >= 50 || !Regex.IsMatch(password, "([a-z][A-Z][0-9])*") || password.Length <= 3 || password == null)
+            if (password.Length > 50 || !Regex.IsMatch(password, "(^[a-zA-Z0-9 #£!?&]+$)") || password.Length < 3 || password == null)
                 Error += "Password must be less than 50 characters, but more than 3 and contain only alphanumerical characters";
 
-            if (!Regex.IsMatch(email, "([a-z][A-Z][0-9])*@([a-z][A-Z][0-9])*.([a-z][A-Z][0-9])*") && !(email == null || email == ""))
+            if (!Regex.IsMatch(email, "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$") || (email == null || email == ""))
                 Error += "Email must be formatted correctly or left blank";
 
             try
             {
                 DateTime dateTemp = Convert.ToDateTime(startDate);
-                if (dateTemp < DateTime.Now)
+                if (dateTemp < DateTime.Today)
                     Error += "Start Date cannot in the past";
                 else if (dateTemp > DateTime.Now.AddMonths(6))
                     Error += "Start date cannot be more than 6 months in the future.";
@@ -100,7 +100,7 @@ namespace ClassLibrary
                 Error += "Start date must be date";
             }
 
-            if (name.Length > 100 || name.Length < 3 || name == null || !Regex.IsMatch(name, "([a-z][A-Z])"))
+            if (name.Length > 100 || name.Length <= 3 || String.IsNullOrEmpty(name) || !Regex.IsMatch(name, "(^[a-zA-Z ]+$)"))
                 Error += "Name must be fewer than 100 characters, longer than 3 and not null";
 
             return Error;

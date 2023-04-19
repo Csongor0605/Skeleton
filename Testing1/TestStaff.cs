@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Testing1
 {
@@ -13,8 +14,19 @@ namespace Testing1
         string email = "NNameson@example.co.uk";
         string loginID = "123456";
         string password = "aljvbkejbvkjrbveb";
-        string startDate = new DateTime(2023, 05, 01).ToShortDateString();
+        string startDate = new DateTime(2023, 06, 01).ToShortDateString();
 
+        private string GetLongStringOfA(int length)
+        {
+            string output = "";
+
+            for (int i = 0; i < length; i++)
+            {
+                output += "a";
+            }
+
+            return output;
+        }
 
         [TestMethod]
         public void TestConstructor()
@@ -475,7 +487,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = null;
+            string tstPassword = "";
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -526,7 +538,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = "passwpasswpasswpasswpasswpasswpasswpasswpasswpass";
+            string tstPassword = GetLongStringOfA(50);
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -595,5 +607,201 @@ namespace Testing1
 
             Assert.AreNotEqual(error, "");
         }
+
+        [TestMethod]
+        public void StartDateExtremeMin()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = "01/01/2003";
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMinMinusOne()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddDays(-1).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreNotEqual(error, "");
+
+        }
+
+        [TestMethod]
+        public void StartDateMinInBoundary()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMinPlusOne()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddDays(1).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMaxMinusOne()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddMonths(6).AddDays(-1).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMaxInBoundary()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddMonths(6).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMaxPlusOne()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddMonths(6).AddDays(1).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateMid()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddMonths(3).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateExtremeMax()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = DateTime.Now.AddMonths(60).ToShortDateString();
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StartDateInvalid()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstDate = "Twenty Second of October";
+
+            error += staff.Valid(loginID, name, password, email, tstDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void EmailExtremeMin()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstEmail = "";
+
+            error += staff.Valid(loginID, name, password, tstEmail, startDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void EmailInvalidNoDomain()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstEmail = "myEmail@";
+
+            error += staff.Valid(loginID, name, password, tstEmail, startDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+        [TestMethod]
+        public void EmailInvalidOnlyDomain()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstEmail = "email.com";
+
+            error += staff.Valid(loginID, name, password, tstEmail, startDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void EmailInvalidNoAt()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstEmail = "myEmailemail.com";
+
+            error += staff.Valid(loginID, name, password, tstEmail, startDate);
+
+            Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void EmailMid()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstEmail = "myEmail@email.com";
+
+            error += staff.Valid(loginID, name, password, tstEmail, startDate);
+
+            Assert.AreEqual(error, "");
+        }
+
     }
 }
