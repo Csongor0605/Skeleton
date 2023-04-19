@@ -78,7 +78,7 @@ namespace ClassLibrary
         {
             string Error = "";
             int temp;
-            if (!int.TryParse(loginID, out temp) || temp < 0 || temp > 999999)
+            if (!int.TryParse(loginID, out temp) || temp < 99999 || temp > 999999)
                 Error += "loginID must be six digit positive integer";
 
             if (password.Length >= 50 || !Regex.IsMatch(password, "([a-z][A-Z][0-9])*") || password.Length <= 3 || password == null)
@@ -100,7 +100,7 @@ namespace ClassLibrary
                 Error += "Start date must be date";
             }
 
-            if (name.Length > 100 || name.Length < 3 || name == null)
+            if (name.Length > 100 || name.Length < 3 || name == null || !Regex.IsMatch(name, "([a-z][A-Z])"))
                 Error += "Name must be fewer than 100 characters, longer than 3 and not null";
 
             return Error;
