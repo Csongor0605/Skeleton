@@ -93,11 +93,11 @@ namespace ClassLibrary
                 if (dateTemp < DateTime.Today)
                     Error += "Start Date cannot in the past";
                 else if (dateTemp > DateTime.Now.AddMonths(6))
-                    Error += "Start date cannot be more than 6 months in the future.";
+                    Error += "Start date cannot be more than 6 months in the future.\n";
             }
             catch
             {
-                Error += "Start date must be date";
+                Error += "Start date must be date\n";
             }
 
             if (name.Length > 100 || name.Length <= 3 || String.IsNullOrEmpty(name) || !Regex.IsMatch(name, "(^[a-zA-Z ]+$)"))
