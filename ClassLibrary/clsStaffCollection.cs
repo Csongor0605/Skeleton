@@ -33,6 +33,8 @@ namespace ClassLibrary
                 tempStaff.OnSite = onSite;
 
                 mStaffList.Add(tempStaff);
+
+                index++;
             }
         }
 
