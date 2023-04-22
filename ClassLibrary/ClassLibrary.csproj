@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsStaffCollection.cs" />
     <Compile Include="clsBook.cs" />
     <Compile Include="clsBookCollection.cs" />
     <Compile Include="clsComplaint.cs" />
@@ -48,6 +49,9 @@
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

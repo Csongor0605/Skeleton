@@ -14,7 +14,7 @@ namespace Testing1
         string email = "NNameson@example.co.uk";
         string loginID = "123456";
         string password = "aljvbkejbvkjrbveb";
-        string startDate = new DateTime(2023, 06, 01).ToShortDateString();
+        string startDate = DateTime.Today.AddMonths(3).ToShortDateString();
 
         private string GetLongStringOfA(int length)
         {
@@ -31,14 +31,14 @@ namespace Testing1
         [TestMethod]
         public void TestConstructor()
         {
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.IsNotNull(staff);
         }
 
         [TestMethod]
         public void TestDateStarted()
         {
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.StartDate, new DateTime(2023, 03, 01));
         }
 
@@ -46,7 +46,7 @@ namespace Testing1
         public void TestName()
         {
 
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.Name, "Name Nameson");
         }
 
@@ -54,7 +54,7 @@ namespace Testing1
         public void TestEmail()
         {
 
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.Email, "NNameson@example.co.uk");
         }
 
@@ -62,21 +62,21 @@ namespace Testing1
         public void TestLoginID()
         {
 
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.LoginID, 123456);
         }
 
         [TestMethod]
         public void TestPassword()
         {
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.Password, "aljvbkejbvkjrbveb");
         }
 
         [TestMethod]
         public void TestPermissionLvl()
         {
-            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", 123456, "aljvbkejbvkjrbveb", 'b', new DateTime(2023, 03, 01));
+            clsStaff staff = new clsStaff("Name Nameson", "NNameson@example.co.uk", "123456", "aljvbkejbvkjrbveb", 'b', "2023, 03, 01");
             Assert.AreEqual(staff.PermissionLvl, 'b');
         }
 
@@ -235,14 +235,14 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void LoginIDExtremeMin() 
+        public void LoginIDExtremeMin(
         {
             string error = "";
             clsStaff staff = new clsStaff();
 
             string tstLogin = "-3748";
 
-            error += staff.Valid(tstLogin,name,password,email,startDate);
+            error += staff.Valid(tstLogin, name, password, email, startDate);
 
             Assert.AreNotEqual(error, "");
         }
@@ -641,7 +641,8 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstDate = DateTime.Now.ToShortDateString();
+            string tstDate = DateTime.Today.ToShortDateString();
+
 
             error += staff.Valid(loginID, name, password, email, tstDate);
 
@@ -802,6 +803,5 @@ namespace Testing1
 
             Assert.AreEqual(error, "");
         }
-
     }
 }

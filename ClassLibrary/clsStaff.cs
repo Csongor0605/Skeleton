@@ -16,16 +16,16 @@ namespace ClassLibrary
 
         public clsStaff(string name,
                         string email,
-                        int loginID,
+                        string loginID,
                         string password,
                         char permissionLvl,
-                        DateTime startDate)
+                        string startDate)
         {
             this.Name = name;
             this.Email = email;
-            this.loginID = loginID;
+            this.loginID = int.Parse(loginID);
             this.password = password;
-            this.startDate = startDate;
+            this.startDate = DateTime.Parse(startDate);
             this.PermissionLvl = permissionLvl;
             this.onSite = false;
         }
