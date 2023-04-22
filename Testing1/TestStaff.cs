@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Testing1
 {
@@ -233,9 +234,8 @@ namespace Testing1
             Assert.AreEqual(Error, "");
         }
 
-
         [TestMethod]
-        public void LoginIDExtremeMin()
+        public void LoginIDExtremeMin(
         {
             string error = "";
             clsStaff staff = new clsStaff();
@@ -642,6 +642,7 @@ namespace Testing1
             clsStaff staff = new clsStaff();
 
             string tstDate = DateTime.Today.ToShortDateString();
+
 
             error += staff.Valid(loginID, name, password, email, tstDate);
 

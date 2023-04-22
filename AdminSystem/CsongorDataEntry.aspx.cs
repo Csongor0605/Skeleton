@@ -20,17 +20,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void BtnOK_Click(object sender, EventArgs e)
     {
+
         clsStaff staff = new clsStaff();
-        staff.Email = EmailTextBox.Text;
-        staff.Name = NameTextBox.Text;
-        staff.PermissionLvl = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
-        staff.OnSite = CheckBox1.Checked;
-        staff.Password = TextBox1.Text;
-        staff.LoginID = 1234567;
 
-        Session["newStaff"] = staff;
+        string err = staff.Valid(LoginIDBox.Text,NameTextBox.Text,TextBox1.Text,EmailTextBox.Text,Calendar1.SelectedDate.ToString());
 
-        Response.Redirect("CsongorViewer.aspx");
+        if (err == "")
+        {
+            staff.PermissionLvl = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
+
+            Session["newStaff"] = staff;
+
+            Response.Redirect("CsongorViewer.aspx");
+        }
+        else
+            ErrorOutputLabel.Text = err;
     }
 
 
@@ -60,5 +64,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             CheckBox1.Checked = staff.OnSite;
             TextBox1.Text = staff.Password;
         }
+    }
+
+    protected void EmailTextBox_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

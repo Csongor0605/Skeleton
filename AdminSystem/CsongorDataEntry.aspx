@@ -9,21 +9,21 @@
 <body>
     <form id="form1" runat="server">
         <div style="height: 613px">
-            <asp:Label ID="Name" runat="server" Text="Name" width="138px"></asp:Label><asp:TextBox ID="NameTextBox" runat="server" style="z-index: 1; left: 171px; top: 14px; position: absolute"></asp:TextBox>
+            <asp:Label ID="Name" runat="server" Text="Name" width="138px"></asp:Label><asp:TextBox ID="NameTextBox" runat="server" style="z-index: 1; left: 169px; top: 14px; position: absolute"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="Login" runat="server" Text="Login ID" width="79px"></asp:Label><asp:TextBox ID="LoginIDBox" runat="server" style="z-index: 1; left: 171px; top: 14px; position: absolute"></asp:TextBox>
-            <br />
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Find" />
-            <br />
-            <asp:Label ID="Email" runat="server" Text="Email" width="138px"></asp:Label><asp:TextBox ID="EmailTextBox" runat="server" style="z-index: 1; left: 170px; top: 57px; position: absolute"></asp:TextBox>
+            <asp:Label ID="Login" runat="server" Text="Login ID" width="79px"></asp:Label><asp:TextBox ID="LoginIDBox" style="z-index: 1; left: 169px; top: 50px; position: absolute" runat="server"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Find" style="position: absolute"/>
             <br />
             <br />
-            <asp:Label ID="Password" runat="server" Text="Password" width="138px"></asp:Label><asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 170px; top: 102px; position: absolute"></asp:TextBox>
+            <asp:Label ID="Email" runat="server" Text="Email" width="138px"></asp:Label><asp:TextBox ID="EmailTextBox" runat="server" style="z-index: 1; left: 169px; top: 91px; position: absolute;" OnTextChanged="EmailTextBox_TextChanged"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Password" runat="server" Text="Password" width="138px"></asp:Label><asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 169px; top: 135px; position: absolute;"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="PermissionLvl" runat="server" Text="Permission Level"></asp:Label><br />
-            <asp:RadioButtonList ID="RadioButtonList1" runat="server" style="z-index: 1; left: 170px; top: 198px; position: absolute; height: 28px; width: 96px">
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server" style="z-index: 1; left: 170px; top: 186px; position: absolute; height: 28px; width: 96px" ToolTip="Select Permission Level">
                 <asp:ListItem>Low</asp:ListItem>
                 <asp:ListItem>Medium</asp:ListItem>
                 <asp:ListItem>High</asp:ListItem>
@@ -43,11 +43,12 @@
             <br />
             <br />
             <br />
+            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" style="z-index: 1; left: 165px; top: 509px; position: absolute" Text="On Site" />
             <br />
-            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" style="z-index: 1; left: 165px; top: 509px; position: absolute" />
             <br />
-            <asp:Button ID="BtnOK" runat="server" OnClick="BtnOK_Click" style="z-index: 1; left: 21px; top: 593px; position: absolute; width: 361px; height: 70px" Text="OK" />
-            <asp:Label ID="OnSite" runat="server" Text="On Site?" width="138px" Height="18px" style="margin-top: 18px"></asp:Label>
+            <asp:Label ID="ErrorOutputLabel" runat="server" Text=""></asp:Label>
+            <br />
+            <asp:Button ID="Button2" runat="server" OnClick="BtnOK_Click" style="z-index: 1; left: 22px; top: 590px; position: absolute; width: 361px; height: 70px" Text="OK" />
         </div>
     </form>
 </body>
