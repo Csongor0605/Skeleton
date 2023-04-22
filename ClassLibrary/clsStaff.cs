@@ -78,7 +78,7 @@ namespace ClassLibrary
         {
             string Error = "";
             int temp;
-            if (!int.TryParse(loginID, out temp) || temp <= 99999 || temp > 999999)
+            if (!int.TryParse(loginID, out temp) || !(loginID.Length == 6))
                 Error += "loginID must be six digit positive integer";
 
             if (password.Length > 50 || !Regex.IsMatch(password, "(^[a-zA-Z0-9 #£!?&]+$)") || password.Length < 3 || password == null)

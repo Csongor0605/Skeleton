@@ -9,7 +9,7 @@ namespace ClassLibrary
     public class clsStaffCollection
     {
         private List<clsStaff> mStaffList = new List<clsStaff>();
-        public clsStaff thisStaff;
+        private clsStaff mthisStaff;
 
         public clsStaffCollection() 
         {
@@ -47,6 +47,28 @@ namespace ClassLibrary
         public int Count 
         {
             get { return mStaffList.Count; }
+        }
+
+        public clsStaff thisStaff
+        {
+            get { return mthisStaff; }
+            set { mthisStaff = value; }
+        }
+
+        public int Add() 
+        {
+            clsDataConnection db = new clsDataConnection();
+
+            db.AddParameter("@LoginID", mthisStaff.LoginID);
+            db.AddParameter("@EmailAddr", mthisStaff.Email);
+            db.AddParameter("@Password", mthisStaff.Password);
+            db.AddParameter("@Name", mthisStaff.Name);
+            db.AddParameter("@Permissions", mthisStaff.PermissionLvl);
+            db.AddParameter("@OnSite",mthisStaff.OnSite);
+            db.AddParameter("@StartDate", mthisStaff.StartDate);
+
+            return db.Execute("add_staff");
+
         }
     }
 }

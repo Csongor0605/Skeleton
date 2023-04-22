@@ -72,5 +72,20 @@ namespace Testing1
 
             Assert.AreEqual(staffCollection.Count, tstList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK() 
+        {
+            clsStaffCollection staffCollection = new clsStaffCollection();
+            clsStaff tstStaff = new clsStaff(name,email,loginID,password,'a',startDate);
+
+            staffCollection.thisStaff = tstStaff;
+            int primaryKey = staffCollection.Add();
+
+            tstStaff.LoginID = primaryKey;
+            staffCollection.thisStaff.Find(primaryKey);
+
+            Assert.AreEqual(staffCollection.thisStaff, tstStaff);
+        }
     }
 }
