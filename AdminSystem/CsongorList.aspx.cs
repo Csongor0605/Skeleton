@@ -23,4 +23,14 @@ public partial class _1_List : System.Web.UI.Page
         staffListBox.DataTextField = "Name";
         staffListBox.DataBind();
     }
+
+
+
+    protected void addBtn_Click(object sender, EventArgs e)
+    {
+        Session["StaffNo"] = -1;
+        Response.Redirect("CsongorDataEntry.aspx");
+    }
+
+
 }

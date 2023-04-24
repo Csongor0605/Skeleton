@@ -28,10 +28,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (err == "")
         {
             staff.PermissionLvl = RadioButtonList1.SelectedItem.ToString().ToCharArray()[0];
+            staff.LoginID = int.Parse(LoginIDBox.Text);
+            staff.Name = NameTextBox.Text;
+            staff.OnSite = CheckBox1.Checked;
+            staff.Password = TextBox1.Text;
+            staff.Email = EmailTextBox.Text;
+            staff.StartDate = Calendar1.SelectedDate;
 
-            Session["newStaff"] = staff;
 
-            Response.Redirect("CsongorViewer.aspx");
+            clsStaffCollection staffColl = new clsStaffCollection();
+            staffColl.thisStaff = staff;
+            staffColl.Add();
+
+            Response.Redirect("CsongorList.aspx");
         }
         else
             ErrorOutputLabel.Text = err;
