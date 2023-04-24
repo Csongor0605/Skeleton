@@ -36,6 +36,8 @@ namespace ClassLibrary
 
                 index++;
             }
+
+            mthisStaff = new clsStaff();
         }
 
         public List<clsStaff> StaffList
@@ -69,6 +71,21 @@ namespace ClassLibrary
 
             return db.Execute("add_staff");
 
+        }
+
+        public void Update()
+        {
+            clsDataConnection db = new clsDataConnection();
+
+            db.AddParameter("@LoginID", mthisStaff.LoginID);
+            db.AddParameter("@EmailAddr", mthisStaff.Email);
+            db.AddParameter("@Password", mthisStaff.Password);
+            db.AddParameter("@Name", mthisStaff.Name);
+            db.AddParameter("@Permissions", mthisStaff.PermissionLvl);
+            db.AddParameter("@OnSite", mthisStaff.OnSite);
+            db.AddParameter("@StartDate", mthisStaff.StartDate);
+
+            db.Execute("update_Staff");
         }
     }
 }

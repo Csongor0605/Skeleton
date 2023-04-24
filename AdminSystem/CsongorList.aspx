@@ -12,8 +12,10 @@
         </div>
         <asp:ListBox ID="staffListBox" runat="server" Height="535px" Width="834px"></asp:ListBox>
         <p>
-            <asp:Button ID="addBtn" runat="server" OnClick="addBtn_Click" Text="Add" />
+            <asp:Button ID="addBtn" runat="server" OnClick="addBtn_Click" Text="Add" style ="margin-right:10px"/>
+            <asp:Button ID="editBtn" runat="server" Text="Edit" style="margin-left:10px" OnClick="editBtn_Click"/>
         </p>
+        <asp:Label ID="errLabel" runat="server"></asp:Label>
     </form>
 </body>
 </html>

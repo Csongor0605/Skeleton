@@ -87,5 +87,28 @@ namespace Testing1
 
             Assert.AreEqual(staffCollection.thisStaff, tstStaff);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK() 
+        {
+            clsStaffCollection staffCol = new clsStaffCollection();
+            clsStaff tstItem = new clsStaff(name,email,loginID,password,'h',startDate);
+
+            staffCol.thisStaff = tstItem;
+            int primaryKey = staffCol.Add();
+
+            tstItem.LoginID = primaryKey;
+
+            tstItem.Name = "Notthe PreviousName";
+            tstItem.Email = "tyui@qwerty.com";
+
+            staffCol.thisStaff = tstItem;
+
+            staffCol.Update();
+
+            staffCol.thisStaff.Find(primaryKey);
+            Assert.AreEqual(staffCol.thisStaff,tstItem);
+
+        }
     }
 }

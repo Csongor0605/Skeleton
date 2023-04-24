@@ -32,5 +32,17 @@ public partial class _1_List : System.Web.UI.Page
         Response.Redirect("CsongorDataEntry.aspx");
     }
 
+    protected void editBtn_Click(object sender, EventArgs e)
+    {
+        int loginID;
 
+        if (staffListBox.SelectedIndex != -1)
+        {
+            loginID = int.Parse(staffListBox.SelectedValue);
+            Session["StaffNo"] = loginID;
+            Response.Redirect("CsongorDataEntry.aspx");
+        }
+        else
+            errLabel.Text = "Please select a record from the list";
+    }
 }
