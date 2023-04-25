@@ -69,8 +69,9 @@ namespace ClassLibrary
             db.AddParameter("@OnSite",mthisStaff.OnSite);
             db.AddParameter("@StartDate", mthisStaff.StartDate);
 
-            return db.Execute("add_staff");
-
+            int key= db.Execute("add_staff");
+            mthisStaff.LoginID = key;
+            return key;
         }
 
         public void Update()
@@ -86,6 +87,14 @@ namespace ClassLibrary
             db.AddParameter("@StartDate", mthisStaff.StartDate);
 
             db.Execute("update_Staff");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection db = new clsDataConnection();
+            db.AddParameter("@loginID", mthisStaff.LoginID);
+
+            db.Execute("delete_staff");
         }
     }
 }

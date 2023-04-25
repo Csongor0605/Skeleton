@@ -16,7 +16,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             if (staffNo != -1)
             {
-                DisplayAddress();
+                DisplayDetails();
             }
         }
     }
@@ -31,7 +31,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         clsStaff staff = new clsStaff();
 
-        string err = staff.Valid(LoginIDBox.Text.PadLeft(6,'0'),NameTextBox.Text,TextBox1.Text,EmailTextBox.Text,Calendar1.SelectedDate.ToString());
+        string err = staff.Valid(LoginIDBox.Text.PadLeft(6,'0'),NameTextBox.Text,passwordTextBox.Text,EmailTextBox.Text,Calendar1.SelectedDate.ToString());
 
         if (err == "")
         {
@@ -39,7 +39,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             staff.LoginID = int.Parse(LoginIDBox.Text.PadLeft(6, '0'));
             staff.Name = NameTextBox.Text;
             staff.OnSite = CheckBox1.Checked;
-            staff.Password = TextBox1.Text;
+            staff.Password = passwordTextBox.Text;
             staff.Email = EmailTextBox.Text;
             staff.StartDate = Calendar1.SelectedDate;
 
@@ -89,11 +89,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
                     break;
             }
             CheckBox1.Checked = staff.OnSite;
-            TextBox1.Text = staff.Password;
+            passwordTextBox.Text = staff.Password;
         }
     }
 
-    void DisplayAddress() 
+    void DisplayDetails() 
     {
         clsStaffCollection staffColl = new clsStaffCollection();
         staffColl.thisStaff.Find(staffNo);
@@ -101,7 +101,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         EmailTextBox.Text = staffColl.thisStaff.Email;
         LoginIDBox.Text = staffColl.thisStaff.LoginID.ToString().PadLeft(6,'0');
         CheckBox1.Checked = staffColl.thisStaff.OnSite;
-        TextBox1.Text = staffColl.thisStaff.Password;
+        passwordTextBox.Text = staffColl.thisStaff.Password;
         Calendar1.SelectedDate = staffColl.thisStaff.StartDate;
         switch (staffColl.thisStaff.PermissionLvl)
         {
@@ -113,6 +113,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 break;
             case 'H':
                 RadioButtonList1.SelectedValue = "High";
+                break;
+            default:
+                RadioButtonList1.SelectedValue = "Low";
                 break;
 
         }

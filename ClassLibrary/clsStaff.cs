@@ -53,9 +53,9 @@ namespace ClassLibrary
 
         public DateTime StartDate { get => startDate; set => startDate = value; }
 
-        public bool Find(int loginID) {
+        public bool Find(int loginIDtoFind) {
             clsDataConnection db = new clsDataConnection();
-            db.AddParameter("@LoginID", loginID);
+            db.AddParameter("@LoginID", loginIDtoFind);
             db.Execute("sproc_Staff_filterByLoginID");
 
             if (db.Count >= 1)

@@ -13,6 +13,7 @@ namespace Testing1
         string loginID = "123456";
         string password = "aljvbkejbvkjrbveb";
         string startDate = DateTime.Today.AddMonths(3).ToShortDateString();
+        char permissionLvl = 'M';
 
         [TestMethod]
         public void InstanceOK() 
@@ -92,7 +93,7 @@ namespace Testing1
         public void UpdateMethodOK() 
         {
             clsStaffCollection staffCol = new clsStaffCollection();
-            clsStaff tstItem = new clsStaff(name,email,loginID,password,'h',startDate);
+            clsStaff tstItem = new clsStaff(name,email,loginID,password,'H',startDate);
 
             staffCol.thisStaff = tstItem;
             int primaryKey = staffCol.Add();
@@ -101,6 +102,7 @@ namespace Testing1
 
             tstItem.Name = "Notthe PreviousName";
             tstItem.Email = "tyui@qwerty.com";
+            tstItem.Password = "newPassword1234";
 
             staffCol.thisStaff = tstItem;
 
@@ -109,6 +111,21 @@ namespace Testing1
             staffCol.thisStaff.Find(primaryKey);
             Assert.AreEqual(staffCol.thisStaff,tstItem);
 
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK() 
+        {
+            clsStaffCollection staffColl = new clsStaffCollection();
+            clsStaff tstStaff = new clsStaff(name,email,loginID,password,permissionLvl,startDate);
+
+            staffColl.thisStaff = tstStaff;
+            int primaryKey = staffColl.Add();
+            staffColl.thisStaff.Find(primaryKey);
+            Console.WriteLine(primaryKey);
+            staffColl.Delete();
+
+            Assert.IsFalse(staffColl.thisStaff.Find(primaryKey));
         }
     }
 }

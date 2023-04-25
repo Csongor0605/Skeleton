@@ -45,4 +45,20 @@ public partial class _1_List : System.Web.UI.Page
         else
             errLabel.Text = "Please select a record from the list";
     }
+
+    protected void deleteBtn_Click(object sender, EventArgs e)
+    {
+        int staffNo;
+
+        if (staffListBox.SelectedIndex != -1)
+        {
+            staffNo = Convert.ToInt32(staffListBox.SelectedValue);
+            Session["StaffNo"] = staffNo;
+            Response.Redirect("CsongorConfirmDelete.aspx");
+        }
+        else
+        {
+            errLabel.Text = "Please select a Record from list.";
+        }
+    }
 }
