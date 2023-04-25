@@ -127,5 +127,25 @@ namespace Testing1
 
             Assert.IsFalse(staffColl.thisStaff.Find(primaryKey));
         }
+
+        [TestMethod]
+        public void ReportWithFiltersOk() 
+        {
+            clsStaffCollection staffColl = new clsStaffCollection();
+            clsStaffCollection filteredCollection = new clsStaffCollection();
+
+            filteredCollection.ReportWithFilters("", "");
+
+            Assert.AreEqual(staffColl,filteredCollection);
+        }
+
+        [TestMethod]
+        public void ReportWithFiltersNoneFound()
+        {
+            clsStaffCollection filteredStaffColl = new clsStaffCollection();
+            filteredStaffColl.ReportWithFilters("B","C");
+
+            Assert.AreEqual(0, filteredStaffColl.Count);
+        }
     }
 }

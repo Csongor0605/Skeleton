@@ -61,4 +61,14 @@ public partial class _1_List : System.Web.UI.Page
             errLabel.Text = "Please select a Record from list.";
         }
     }
+
+    protected void filterApplyBtn_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection filteredStaffColl = new clsStaffCollection();
+        filteredStaffColl.ReportWithFilters(permissionsList.SelectedValue,OnSiteList.SelectedValue);
+        staffListBox.DataSource = filteredStaffColl.StaffList;
+        staffListBox.DataValueField = "LoginID";
+        staffListBox.DataTextField = "Name";
+        staffListBox.DataBind();
+    }
 }
