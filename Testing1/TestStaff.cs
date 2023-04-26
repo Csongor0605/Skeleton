@@ -280,7 +280,7 @@ namespace Testing1
             clsStaff staff = new clsStaff();
 
             string tstLogin = "100001";
-
+            
             error += staff.Valid(tstLogin, name, password, email, startDate);
 
             Assert.AreEqual(error, "");
@@ -293,7 +293,7 @@ namespace Testing1
             clsStaff staff = new clsStaff();
 
             string tstLogin = "999999";
-
+            
             error += staff.Valid(tstLogin, name, password, email, startDate);
 
             Assert.AreEqual(error, "");
@@ -349,6 +349,19 @@ namespace Testing1
             error += staff.Valid(tstLogin, name, password, email, startDate);
 
             Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void LoginIDLeadingZeros()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstLogin = "000235";
+
+            error += staff.Valid(tstLogin, name, password, email, startDate);
+
+            Assert.AreEqual(error, "");
         }
 
         [TestMethod]
@@ -409,7 +422,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string tstName = GetLongStringOfA(99);
 
             error += staff.Valid(loginID, tstName, password, email, startDate);
 
@@ -422,7 +435,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string tstName = GetLongStringOfA(100);
 
             error += staff.Valid(loginID, tstName, password, email, startDate);
 
@@ -435,7 +448,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string tstName = GetLongStringOfA(101);
 
             error += staff.Valid(loginID, tstName, password, email, startDate);
 
@@ -448,7 +461,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string tstName = GetLongStringOfA(50);
 
             error += staff.Valid(loginID, tstName, password, email, startDate);
 
@@ -461,7 +474,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            string tstName = GetLongStringOfA(150);
 
             error += staff.Valid(loginID, tstName, password, email, startDate);
 
@@ -538,7 +551,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = GetLongStringOfA(50);
+            string tstPassword = GetLongStringOfA(49);
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -550,7 +563,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = "apasswpasswpasswpasswpasswpasswpasswpasswpasswpass";
+            string tstPassword = GetLongStringOfA(50);
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -562,7 +575,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = "aapasswpasswpasswpasswpasswpasswpasswpasswpasswpass";
+            string tstPassword = GetLongStringOfA(51);
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -588,7 +601,7 @@ namespace Testing1
             string error = "";
             clsStaff staff = new clsStaff();
 
-            string tstPassword = "passwpasswpasswpapasswpasswpasswpasswpasswpasswpasswpasswpasswpasssswpasswpasswpasswpasswpasswpass";
+            string tstPassword = GetLongStringOfA(150);
 
             error += staff.Valid(loginID, name, tstPassword, email, startDate);
 
@@ -608,6 +621,18 @@ namespace Testing1
             Assert.AreNotEqual(error, "");
         }
 
+        [TestMethod]
+        public void PasswordContainPermittedCharacters()
+        {
+            string error = "";
+            clsStaff staff = new clsStaff();
+
+            string tstPassword = "###£!?&&";
+
+            error += staff.Valid(loginID, name, tstPassword, email, startDate);
+
+            Assert.AreEqual(error, "");
+        }
         [TestMethod]
         public void StartDateExtremeMin()
         {
