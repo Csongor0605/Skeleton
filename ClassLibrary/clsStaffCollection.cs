@@ -9,33 +9,14 @@ namespace ClassLibrary
     public class clsStaffCollection
     {
         private List<clsStaff> mStaffList = new List<clsStaff>();
-        public clsStaff thisStaff;
+        private clsStaff mthisStaff;
 
         public clsStaffCollection() 
         {
-            int index = 0;
-            int recordCnt = 0;
             clsDataConnection connection = new clsDataConnection();
             connection.Execute("select_all_from_staff");
-            recordCnt = connection.Count;
-
-            while (index < recordCnt) {
-
-                string name = Convert.ToString(connection.DataTable.Rows[index]["Name"]);
-                string email = Convert.ToString(connection.DataTable.Rows[index]["EmailAddr"]);
-                string login = Convert.ToString(connection.DataTable.Rows[index]["LoginID"]);
-                string password = Convert.ToString(connection.DataTable.Rows[index]["Password"]);
-                string startDate = Convert.ToString(connection.DataTable.Rows[index]["StartDate"]);
-                char permissions = Convert.ToChar(connection.DataTable.Rows[index]["Permissions"]);
-                bool onSite = Convert.ToBoolean(connection.DataTable.Rows[index]["OnSite"]);
-
-                clsStaff tempStaff = new clsStaff(name,email,login,password,permissions,startDate);
-                tempStaff.OnSite = onSite;
-
-                mStaffList.Add(tempStaff);
-
-                index++;
-            }
+            PopulateArray(connection);
+            mthisStaff = new clsStaff();
         }
 
         public List<clsStaff> StaffList
@@ -47,6 +28,92 @@ namespace ClassLibrary
         public int Count 
         {
             get { return mStaffList.Count; }
+        }
+
+        public clsStaff thisStaff
+        {
+            get { return mthisStaff; }
+            set { mthisStaff = value; }
+        }
+
+        public int Add() 
+        {
+            clsDataConnection db = new clsDataConnection();
+
+            db.AddParameter("@LoginID", mthisStaff.LoginID);
+            db.AddParameter("@EmailAddr", mthisStaff.Email);
+            db.AddParameter("@Password", mthisStaff.Password);
+            db.AddParameter("@Name", mthisStaff.Name);
+            db.AddParameter("@Permissions", mthisStaff.PermissionLvl);
+            db.AddParameter("@OnSite",mthisStaff.OnSite);
+            db.AddParameter("@StartDate", mthisStaff.StartDate);
+
+            int key= db.Execute("add_staff");
+            mthisStaff.LoginID = key;
+            return key;
+        }
+
+        public void Update()
+        {
+            clsDataConnection db = new clsDataConnection();
+
+            db.AddParameter("@LoginID", mthisStaff.LoginID);
+            db.AddParameter("@EmailAddr", mthisStaff.Email);
+            db.AddParameter("@Password", mthisStaff.Password);
+            db.AddParameter("@Name", mthisStaff.Name);
+            db.AddParameter("@Permissions", mthisStaff.PermissionLvl);
+            db.AddParameter("@OnSite", mthisStaff.OnSite);
+            db.AddParameter("@StartDate", mthisStaff.StartDate);
+
+            db.Execute("update_Staff");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection db = new clsDataConnection();
+            db.AddParameter("@loginID", mthisStaff.LoginID);
+
+            db.Execute("delete_staff");
+        }
+
+        public void ReportWithFilters(string permissions, string onSite)
+        {
+            clsDataConnection db = new clsDataConnection();
+
+            if (permissions != "Any" && permissions != "")
+                db.AddParameter("@Permissions",permissions.First());
+            if (onSite != "Any"  && onSite != "")
+                db.AddParameter("@OnSite", onSite.ToCharArray()[0]);
+
+            db.Execute("filter_staff");
+
+            PopulateArray(db);
+        }
+
+        void PopulateArray(clsDataConnection db) 
+        {
+            int index = 0;
+            int recordCount = db.Count;
+
+            mStaffList = new List<clsStaff>();
+
+            while (index < recordCount)
+            {
+                string name = Convert.ToString(db.DataTable.Rows[index]["Name"]);
+                string email = Convert.ToString(db.DataTable.Rows[index]["EmailAddr"]);
+                string login = Convert.ToString(db.DataTable.Rows[index]["LoginID"]);
+                string password = Convert.ToString(db.DataTable.Rows[index]["Password"]);
+                string startDate = Convert.ToString(db.DataTable.Rows[index]["StartDate"]);
+                char permissions = Convert.ToChar(db.DataTable.Rows[index]["Permissions"]);
+                bool onSite = Convert.ToBoolean(db.DataTable.Rows[index]["OnSite"]);
+
+                clsStaff tempStaff = new clsStaff(name, email, login, password, permissions, startDate);
+                tempStaff.OnSite = onSite;
+
+                mStaffList.Add(tempStaff);
+
+                index++;
+            }
         }
     }
 }

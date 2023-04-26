@@ -23,4 +23,52 @@ public partial class _1_List : System.Web.UI.Page
         staffListBox.DataTextField = "Name";
         staffListBox.DataBind();
     }
+
+
+
+    protected void addBtn_Click(object sender, EventArgs e)
+    {
+        Session["StaffNo"] = -1;
+        Response.Redirect("CsongorDataEntry.aspx");
+    }
+
+    protected void editBtn_Click(object sender, EventArgs e)
+    {
+        int loginID;
+
+        if (staffListBox.SelectedIndex != -1)
+        {
+            loginID = int.Parse(staffListBox.SelectedValue);
+            Session["StaffNo"] = loginID;
+            Response.Redirect("CsongorDataEntry.aspx");
+        }
+        else
+            errLabel.Text = "Please select a record from the list";
+    }
+
+    protected void deleteBtn_Click(object sender, EventArgs e)
+    {
+        int staffNo;
+
+        if (staffListBox.SelectedIndex != -1)
+        {
+            staffNo = Convert.ToInt32(staffListBox.SelectedValue);
+            Session["StaffNo"] = staffNo;
+            Response.Redirect("CsongorConfirmDelete.aspx");
+        }
+        else
+        {
+            errLabel.Text = "Please select a Record from list.";
+        }
+    }
+
+    protected void filterApplyBtn_Click(object sender, EventArgs e)
+    {
+        clsStaffCollection filteredStaffColl = new clsStaffCollection();
+        filteredStaffColl.ReportWithFilters(permissionsList.SelectedValue,OnSiteList.SelectedValue);
+        staffListBox.DataSource = filteredStaffColl.StaffList;
+        staffListBox.DataValueField = "LoginID";
+        staffListBox.DataTextField = "Name";
+        staffListBox.DataBind();
+    }
 }

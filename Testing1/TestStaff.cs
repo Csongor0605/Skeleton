@@ -235,7 +235,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void LoginIDExtremeMin(
+        public void LoginIDExtremeMin()
         {
             string error = "";
             clsStaff staff = new clsStaff();
