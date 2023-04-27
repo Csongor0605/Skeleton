@@ -79,7 +79,7 @@ namespace ClassLibrary
         public void ReportByName(string name)
         {
             clsDataConnection db = new clsDataConnection();
-
+            name += '%';
             db.AddParameter("@Name",name);
 
             db.Execute("filter_staff_by_name");

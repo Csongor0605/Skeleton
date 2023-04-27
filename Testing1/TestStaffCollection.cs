@@ -136,7 +136,7 @@ namespace Testing1
 
             filteredCollection.ReportByName("");
 
-            Assert.AreEqual(staffColl,filteredCollection);
+            Assert.AreEqual(staffColl.Count,filteredCollection.Count);
         }
 
         [TestMethod]
