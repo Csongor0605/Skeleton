@@ -76,16 +76,13 @@ namespace ClassLibrary
             db.Execute("delete_staff");
         }
 
-        public void ReportWithFilters(string permissions, string onSite)
+        public void ReportByName(string name)
         {
             clsDataConnection db = new clsDataConnection();
+            name += '%';
+            db.AddParameter("@Name",name);
 
-            if (permissions != "Any" && permissions != "")
-                db.AddParameter("@Permissions",permissions.First());
-            if (onSite != "Any"  && onSite != "")
-                db.AddParameter("@OnSite", onSite.ToCharArray()[0]);
-
-            db.Execute("filter_staff");
+            db.Execute("filter_staff_by_name");
 
             PopulateArray(db);
         }
