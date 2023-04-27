@@ -8,8 +8,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="margin-bottom: 88px">
+            Are you sure you want to delete this record?<br />
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" style="z-index: 1; left: 79px; top: 91px; position: absolute" Text="No" />
         </div>
+        <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" style="z-index: 1; left: 14px; top: 90px; position: absolute" Text="Yes" />
     </form>
 </body>
 </html>
