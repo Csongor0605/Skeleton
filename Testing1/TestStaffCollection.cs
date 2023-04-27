@@ -129,21 +129,21 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void ReportWithFiltersOk() 
+        public void ReportWithFilterOk() 
         {
             clsStaffCollection staffColl = new clsStaffCollection();
             clsStaffCollection filteredCollection = new clsStaffCollection();
 
-            filteredCollection.ReportWithFilters("", "");
+            filteredCollection.ReportByName("");
 
             Assert.AreEqual(staffColl,filteredCollection);
         }
 
         [TestMethod]
-        public void ReportWithFiltersNoneFound()
+        public void ReportByNameNoneFound()
         {
             clsStaffCollection filteredStaffColl = new clsStaffCollection();
-            filteredStaffColl.ReportWithFilters("B","C");
+            filteredStaffColl.ReportByName("Nameless Person");
 
             Assert.AreEqual(0, filteredStaffColl.Count);
         }

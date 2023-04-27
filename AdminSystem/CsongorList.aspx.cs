@@ -65,7 +65,7 @@ public partial class _1_List : System.Web.UI.Page
     protected void filterApplyBtn_Click(object sender, EventArgs e)
     {
         clsStaffCollection filteredStaffColl = new clsStaffCollection();
-        filteredStaffColl.ReportWithFilters(permissionsList.SelectedValue,OnSiteList.SelectedValue);
+        filteredStaffColl.ReportByName(TextBox1.Text);
         staffListBox.DataSource = filteredStaffColl.StaffList;
         staffListBox.DataValueField = "LoginID";
         staffListBox.DataTextField = "Name";
